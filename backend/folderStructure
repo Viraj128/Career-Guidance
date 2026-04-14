@@ -1,0 +1,113 @@
+career-platform/
+│
+├── backend/
+│   ├── agents/                # LangChain/CrewAI agent definitions & tools
+│   │   ├── careerAgent.js
+│   │   ├── tools/
+│   │   │   ├── jobSearchTool.js
+│   │   │   ├── skillGapTool.js
+│   │   │   ├── resumeTool.js
+│   │   │   └── coverLetterTool.js
+│   │   └── prompts/
+│   │       ├── roleInferencePrompt.js
+│   │       ├── roadmapPrompt.js
+│   │       └── resumePrompt.js
+│   │
+│   ├── config/                 # Environment config, DB connection, etc.
+│   │   ├── db.js
+│   │   ├── firebase.js
+│   │   └── openai.js
+│   │
+│   ├── controllers/            # Route handlers (business logic)yaha se krna hain
+│   │   ├── aiController.js
+│   │   ├── profileController.js
+│   │   ├── jobsController.js
+│   │   └── resumeController.js
+│   │
+│   ├── middleware/             # Auth, error handling, validation
+│   │   ├── verifyFirebase.js
+│   │   └── errorHandler.js
+│   │
+│   ├── models/                 # Mongoose models (MongoDB)
+│   │   ├── User.js
+│   │   ├── Role.js
+│   │   ├── Gap.js
+│   │   ├── Job.js
+│   │   └── Artifact.js
+│   │
+│   ├── routes/                 # API routes
+│   │   ├── ai.js
+│   │   ├── profile.js
+│   │   ├── jobs.js
+│   │   ├── resume.js
+│   │   └── interview.js
+│   │
+│   ├── services/               # External API & DB operations
+│   │   ├── jobApiService.js
+│   │   ├── roadmapService.js
+│   │   ├── resumeService.js
+│   │   └── interviewService.js
+│   │
+│   ├── utils/                   # Helper functions
+│   │   ├── logger.js
+│   │   ├── constants.js
+│   │   ├── formatters.js
+│   │   └── validators.js
+│   │
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+│
+frontend/
+├── public/
+│   ├── favicon.ico
+│   └── vite.svg
+│
+├── src/
+│   ├── assets/                  # Static images/icons
+│   │   └── react.svg
+│   │
+│   ├── components/              # Reusable UI components
+│   │   ├── Navbar.jsx
+│   │   ├── SkillChart.jsx
+│   │   ├── JobCard.jsx
+│   │   ├── ResumePreview.jsx
+│   │   └── Chatbot.jsx
+│   │
+│   ├── pages/                   # Full pages
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Signup.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Profile.jsx
+│   │   ├── ResumeBuilder.jsx
+│   │   └── JobSearch.jsx
+│   │
+│   ├── hooks/                   # Custom React hooks
+│   │   └── useAuth.js           # Firebase-based auth hook
+│   │
+│   ├── services/                # API calls to backend
+│   │   ├── aiService.js         # Chatbot, AI QnA, career agent
+│   │   ├── profileService.js    # Profile CRUD
+│   │   ├── jobsService.js       # Job search API
+│   │   └── resumeService.js     # Resume + cover letter gen
+│   │
+│   ├── firebase.js              # Firebase config & setup
+│   ├── App.jsx                  # Routing setup
+│   ├── main.jsx                 # React entry point
+│   ├── index.css                # Global styles
+│   │
+│   ├── router/                  # Route protection & layout
+│   │   └── PrivateRoute.jsx     # Protects dashboard/profile
+│   │
+│   ├── context/                 # Context providers
+│   │   └── AuthContext.jsx      # Optional (if we want global auth state)
+│   │
+│   └── utils/                   # Helper functions
+│       └── validators.js        # Form validation helpers
+│
+├── tailwind.config.js
+├── vite.config.js
+└── package.json
+│
+└── README.md

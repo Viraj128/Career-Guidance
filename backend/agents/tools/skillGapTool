@@ -1,0 +1,50 @@
+// agents/tools/skillGapTool.js  
+// Accept the user's current skills and target role.
+
+// Compare them against a role's ideal skills (we can store a static mock dataset for now; later we can fetch from DB or API).
+
+// Return a list of missing skills (gaps).
+// backend/agents/tools/skillGapTool.js
+const { getLLM } = require("../../config/gemini"); // your OpenAI wrapper
+const roadmapPrompt = require("../prompts/roadmapPrompt");
+
+async function skillGapTool(currentSkills = [], targetRole) {
+  // Mock dataset of skills per role (can later connect to DB or API)
+  const roleSkillMap = {
+    "frontend developer": ["HTML", "CSS", "JavaScript", "React", "Git", "REST APIs"],
+    "data analyst": ["Python", "SQL", "Excel", "Data Visualization", "Statistics", "Pandas"],
+    "backend developer": ["Node.js", "Express", "MongoDB", "SQL", "REST APIs", "Authentication"],
+  };
+
+  const idealSkills = roleSkillMap[targetRole.toLowerCase()] || [];
+  const missingSkills = idealSkills.filter(skill => !currentSkills.includes(skill));
+
+  // Optional: Generate advice using LLM
+  const llm = getLLM();
+  const prompt = `
+You are a career advisor AI.
+User current skills: ${currentSkills.join(", ")}
+Target role: ${targetRole}
+Missing skills: ${missingSkills.join(", ")}
+Provide a brief advice for the user to fill these gaps.
+`;
+
+  const aiResponse = await llm.call(prompt);
+
+  return {
+    role: targetRole,
+    missingSkills,
+    totalMissing: missingSkills.length,
+    advice: aiResponse.text || aiResponse.output_text || "No advice generated.",
+  };
+}
+
+// module.exports = skillGapTool;
+module.exports = {
+  name: "skillGapTool",
+  description: "Analyze the skill gap between the user's current skills and the target role.",
+  execute: async (currentSkills, targetRole) => {
+    // Logic to analyze skill gaps
+    // Example: Compare current skills with required skills for the target role
+  },
+};
